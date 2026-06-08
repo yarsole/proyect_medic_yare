@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Médico{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Consultorio Médico</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="{{ url_for('pacientes') }}">Gestionar Pacientes</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body text-center">
+            <h1 class="card-title">Bienvenido, Dr/a. {{ doctor_name }}</h1>
+            <p class="card-text">Selecciona una opción en la barra de navegación para comenzar a trabajar.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

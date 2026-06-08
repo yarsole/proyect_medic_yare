@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Agenda de Pacientes{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Gestión de Pacientes</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="{{ url_for('dashboard') }}">Inicio</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Agregar Nuevo Paciente</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('pacientes') }}" method="POST">
+                        <div class="mb-3">
+                            <input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="edad" class="form-control" placeholder="Edad" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" name="correo" class="form-control" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="telefono" class="form-control" placeholder="Número de teléfono" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Guardar Paciente</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Lista de Pacientes</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Edad</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in pacientes %}
+                            <tr>
+                                <td>{{ p.nombre }}</td>
+                                <td>{{ p.edad }}</td>
+                                <td>{{ p.correo }}</td>
+                                <td>{{ p.telefono }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center">No hay pacientes registrados aún.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
